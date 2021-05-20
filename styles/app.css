@@ -9,17 +9,16 @@ main {
   flex: 3; /* take 2 columns */
 }
 #list h3{
-  margin-top: 5rem;
-  margin-bottom: 3rem;;
+  margin-top: 30px;
+  margin-bottom: 20px;
 }
 #details {
   flex: 1; /* take 1 column (space) */
   background-color: #fafafa;
   border: 1px solid black;
   padding: 10px;
-  margin-top: 100px;
+  margin-top: 83px;
   margin-left:10px;
-
 }
 #details h3 {
   text-align: center;
@@ -29,11 +28,8 @@ main {
   display: none;
 }
 
-#iDelete {
-  padding: 5px;
-}
 #iDelete:hover {
-  color: #e41212;
+  color: #ff0000;
 }
 
 .icon-important {
@@ -44,9 +40,12 @@ main {
   display:flex;
   flex-direction: row;
   flex-wrap: wrap;
+  background-image: url('../img/bg.jpg');
+  border: 20px solid rgb(180, 97, 2);
+  box-shadow: inset 0 0 8px rgb(0, 0, 0);
 }
 .task {
-  margin: .5rem;
+  margin: 1rem;
   padding: 5px;
   background-color: rgb(230, 231, 129);
   box-shadow: 0 5px 5px rgb(0, 0, 0);
@@ -62,9 +61,10 @@ main {
 }
 
 .sec-1 h6 {
+  font-size: 14px;
   background-color: #f0a80e;
-  border-radius: 50px;
-  padding: 5px;
+  padding: 3px;
+  margin-right: 5px;
 }
 
 .sec-2 {
@@ -74,10 +74,11 @@ main {
   padding:10px;
 }
 .sec-date {
-  font-family: 'Courier New', Courier, monospace;
-  text-align: center;
-  padding: 5px;
-  margin-top: 30px;
+  margin-top: 10px;
+}
+.sec-description {
+  font-size: 20px;
+  font-style: oblique;
 }
 h3 {
   text-align: center;
@@ -94,4 +95,8 @@ h3 {
 #btnSave {
   margin-top: 10px;
 }
-
+#important-div{
+  text-align: center;
+  margin-top: 10px;
+  font-size: 20px;
+}

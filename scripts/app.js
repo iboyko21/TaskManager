@@ -2,8 +2,6 @@ var isItImportant = false;
 var serverUrl = "http://fsdi.azurewebsites.net/api";
 
 function toggleImportant() {
-  console.log("Icon clicked!");
-
   if (isItImportant) {
     // change to non important
     isItImportant = false;
@@ -16,8 +14,6 @@ function toggleImportant() {
 }
 
 function saveTask() {
-  console.log("Saving!");
-
   // get the values from controls
   let title = $("#txtTitle").val();
   let desc = $("#txtDesc").val();
@@ -53,7 +49,7 @@ function saveTask() {
     );
     return;
   }
-
+  // clear the inputs
   $("#txtTitle").val("");
   $("#txtDesc").val("");
   $("#txtLocation").val("");
@@ -83,6 +79,14 @@ function saveTask() {
 }
 
 function displayTask(task) {
+
+  const star = task.important ? `<span class="star"><i class="fa fa-star"></i></span>` : "";
+
+  const taskDate = new Date(task.dueDate);
+  const date = taskDate.toDateString();
+  const time = taskDate.toLocaleString('en-US', 
+    { hour: 'numeric', minute: 'numeric', hour12: true });
+
   let alert = "";
   switch (task.alertText) {
     case "1":
@@ -106,7 +110,7 @@ function displayTask(task) {
     <div class="sec-1">
     <h6>${alert}</h6>
     <b>${task.title}</b>
-    <i id="iDelete" onclick="deleteTask(${task.id})" class="fas fa-ban"></i>
+    <i id="iDelete" onclick="deleteTask(${task.id})" class="far fa-times-circle"></i>
     </div>
     
     <div class="sec-2">
@@ -115,11 +119,14 @@ function displayTask(task) {
       </div>
 
       <div class="sec-location">
-      <label>${task.location}</label>
-     </div>
+        <label><i class="fas fa-map-marker-alt"></i> ${task.location}</label>
+      </div>
 
       <div class="sec-date">
-        <label>${task.dueDate}</label>
+        <label><i class="far fa-calendar-alt"></i> ${date} ${time}</label>
+      </div>
+
+      <div id="important-div">${star}
       </div>
 
       </div>
@@ -127,11 +134,20 @@ function displayTask(task) {
   </div>`;
 
   $("#tasksContainer").append(syntax);
+
+// function showImportant() {
+//   if (task.important = true) {
+//      $("#important-div").show();
+//    } else if (task.important = false) {
+//     $("#important-div").hide();
+//   }
+// }
+  
+// showImportant();
+
 }
 
 function deleteTask(id) {
-  console.log("deleting the task: " + id);
-
   $.ajax({
     url: serverUrl + "/tasks/" + id,
     type: "DELETE",
@@ -169,8 +185,6 @@ function retrieveTasks() {
 }
 
 function init() {
-  console.log("Task Manager");
-
   // load data
   retrieveTasks();
 
@@ -184,18 +198,3 @@ function init() {
 }
 
 window.onload = init;
-
-function testRequest() {
-  $.ajax({
-    url: "https://restclass.azurewebsites.net/api/test",
-    type: "GET",
-    success: function (res) {
-      console.log("Server says", res);
-    },
-    error: function (errorDet) {
-      console.error("error on req", errorDet);
-    },
-  });
-}
-
-// make background as sticky notes on a board
