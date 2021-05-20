@@ -79,13 +79,10 @@ function saveTask() {
 }
 
 function displayTask(task) {
-
-  const star = task.important ? `<span class="star"><i class="fa fa-star"></i></span>` : "";
-
-  const taskDate = new Date(task.dueDate);
-  const date = taskDate.toDateString();
-  const time = taskDate.toLocaleString('en-US', 
-    { hour: 'numeric', minute: 'numeric', hour12: true });
+  var important = task.important ? `<i class="fa fa-star"></i>` : "";
+  var taskDate = new Date(task.dueDate);
+  var date = taskDate.toDateString();
+  var time = taskDate.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true });
 
   let alert = "";
   switch (task.alertText) {
@@ -126,7 +123,7 @@ function displayTask(task) {
         <label><i class="far fa-calendar-alt"></i> ${date} ${time}</label>
       </div>
 
-      <div id="important-div">${star}
+      <div id="important-div">${important}
       </div>
 
       </div>
